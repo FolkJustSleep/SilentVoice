@@ -1,6 +1,13 @@
 # Set up
 
-Create Virtual Environment 
+.env setup
+
+```
+SUPABASE_URL=https://your-supabase-url.supabase.co
+SUPABASE_ANON_KEY=your-anon-key
+```
+
+Create Virtual Environment
 
 ```
 python3 -m venv .venv
@@ -24,7 +31,7 @@ If you add more dependencies to the project use this command to update requireme
 pip freeze > requirements.txt
 ```
 
-Run 
+Run
 
 ```
 python main.py
