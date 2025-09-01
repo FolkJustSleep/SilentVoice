@@ -22,7 +22,7 @@ source .venv/bin/activate
 Install Dependencies
 
 ```
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 If you add more dependencies to the project use this command to update requirements.txt
