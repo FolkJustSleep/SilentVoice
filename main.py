@@ -1,7 +1,7 @@
 from src.Display import Display_message 
 from database.supabase import CreateConnection
 from src.camera.camera import capture_images
-import src.Result as Result
+import src.service.Result as Result
 
 db = CreateConnection()
 

@@ -28,7 +28,7 @@ def Update(db, table_name, data, id) :
         return response, "Data updated successfully"
     except Exception as e:
         return e, "Error updating data"
-    
+
 def Delete(db, table_name, id) :
     try:
         response = db.table(table_name).delete().eq("id", id).execute()
