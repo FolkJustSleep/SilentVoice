@@ -2,6 +2,7 @@ from src.Display import Display_message
 from database.supabase import CreateConnection
 from src.camera.camera import capture_images
 import src.service.Result as Result
+from src.tts import CreateSound
 
 db = CreateConnection()
 
@@ -53,5 +54,10 @@ if __name__ == "__main__":
                 Display_message("Camera data collection completed!")
             else:
                 Display_message("Camera data collection failed!")
+        elif input_text.lower() == "voice":
+            id = input("Enter Voice ID: ")
+            text = input("Enter Text: ")
+            response = CreateSound(id,text)
+            print(response)
         else:
             Display_message("Invalid input (camera/crud/no)")
