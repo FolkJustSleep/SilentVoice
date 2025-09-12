@@ -1,15 +1,15 @@
-from src.Display import Display_message 
+from src.service.Display import Display_message 
 from database.supabase import CreateConnection
 from src.camera.camera import capture_images
 import src.service.Result as Result
-from src.tts import CreateSound
+from src.service.tts import CreateSound
 
 db = CreateConnection()
 
 
 if __name__ == "__main__":
     while(True):
-        input_text = input("Start Program (camera/crud/no): ")
+        input_text = input("Start Program (camera/crud/voice/no): ")
         if input_text.lower() == "no":
             break
         elif input_text.lower() == "crud":
@@ -57,7 +57,8 @@ if __name__ == "__main__":
         elif input_text.lower() == "voice":
             id = input("Enter Voice ID: ")
             text = input("Enter Text: ")
-            response = CreateSound(id,text)
+            fileName = input("Enter File Name: ")
+            response = CreateSound(id,text,fileName)
             print(response)
         else:
             Display_message("Invalid input (camera/crud/no)")
