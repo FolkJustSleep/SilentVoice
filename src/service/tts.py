@@ -16,7 +16,7 @@ def CreateSound(voiceid, text, filename):
         language_code="en",
         model_id="eleven_multilingual_v2",
     )
-    response = UploadVoice(audiofile, filename)
+    response = UploadVoice(audiofile, fileName)
     return response
     
 

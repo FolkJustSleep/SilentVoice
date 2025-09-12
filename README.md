@@ -5,6 +5,7 @@
 ```
 SUPABASE_URL=https://your-supabase-url.supabase.co
 SUPABASE_SECRET_KEY=your-anon-key
+ELEVENLABS_API_KEY=your-elevenlab-api-key
 ```
 
 Create Virtual Environment
