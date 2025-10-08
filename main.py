@@ -8,6 +8,7 @@ db = CreateConnection()
 
 
 if __name__ == "__main__":
+    print("Welcome to the AI Project CLI")
     while(True):
         input_text = input("Start Program (camera/crud/voice/no): ")
         if input_text.lower() == "no":

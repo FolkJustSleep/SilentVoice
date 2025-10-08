@@ -14,7 +14,7 @@ def find_available_cameras():
             cap.release()
     return available_cameras
 
-def capture_images(number_of_classes=3, dataset_size=25, camera_index=1):
+def capture_images(number_of_classes=3, dataset_size=25, camera_index=0):
     # Find available cameras if not specified
     if camera_index is None:
         available_cameras = find_available_cameras()
