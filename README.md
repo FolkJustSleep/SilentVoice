@@ -8,10 +8,10 @@ SUPABASE_SECRET_KEY=your-anon-key
 ELEVENLABS_API_KEY=your-elevenlab-api-key
 ```
 
-Create Virtual Environment
+Create Virtual Environment use Python 3.11
 
 ```
-python3 -m venv .venv
+python3.11 -m venv .venv
 ```
 
 Activate Virtual Environment
