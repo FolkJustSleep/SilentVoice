@@ -1,6 +1,6 @@
 from src.service.Display import Display_message 
 from database.supabase import CreateConnection
-from src.camera.camera import capture_images
+from src.service.camera import capture_images
 import src.service.Result as Result
 from src.service.tts import CreateSound
 
