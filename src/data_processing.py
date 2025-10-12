@@ -54,7 +54,7 @@ for dir_name in os.listdir(DATA_DIR):
                 #     mp_drawing_styles.get_default_hand_landmarks_style(),
                 # mp_drawing_styles.get_default_hand_connections_style()
             # )
-            
+# show the image with the hand landmarks            
 #         plt.figure()
 #         plt.imshow(img_rgb)  
         
