@@ -24,5 +24,10 @@ y_predicted = model.predict(x_test)
 # calculate the accuracy
 accuracy = accuracy_score(y_predicted, y_test)
 print('Accuracy: {}%'.format(accuracy * 100))
+
+f = open('model.p', 'wb')
+pickle.dump({'model': model}, f)
+f.close()
+print("Model trained and saved to model.p")
 # print(data_dict.keys())
 # print(data_dict)
