@@ -1,10 +1,11 @@
+import cv2
 from database.supabase import CreateConnection
 from src.service.camera import capture_images
 import src.service.Result as Result
 from src.service.tts import CreateSound
 # from src.train_models import train_model
 # from src.data_processing import dataprocessing
-# from src.classify_model import classify_model
+from src.classify_model import classify_model
 
 db = CreateConnection()
 
@@ -63,5 +64,9 @@ if __name__ == "__main__":
             fileName = input("Enter File Name: ")
             response = CreateSound(id,text,fileName)
             print(response)
+        elif input_text.lower() == "model":
+            print("Starting model")
+            classify_model()
         else:
             print("Invalid input (camera/crud/no)")
+    cv2.destroyAllWindows()
