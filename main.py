@@ -13,7 +13,7 @@ db = CreateConnection()
 if __name__ == "__main__":
     print("Welcome to the AI Project CLI")
     while(True):
-        input_text = input("Start Program (camera/crud/voice/no): ")
+        input_text = input("Start Program (datacollect/crud/voice/model/no): ")
         if input_text.lower() == "no":
             break
         elif input_text.lower() == "crud":
@@ -51,7 +51,7 @@ if __name__ == "__main__":
                     break
                 else:
                     print("Invalid function")
-        elif input_text.lower() == "camera":
+        elif input_text.lower() == "datacollect":
             print("Starting camera data collection...")
             success = capture_images()
             if success:
