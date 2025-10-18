@@ -2,7 +2,10 @@ import cv2
 import pickle
 import mediapipe as mp
 import numpy as np
-from src.service.camera import find_available_cameras
+if __name__ == "__main__":
+    from service.camera import find_available_cameras
+else: 
+    from src.service.camera import find_available_cameras   
 
 
 # Initialize MediaPipe Hands.
