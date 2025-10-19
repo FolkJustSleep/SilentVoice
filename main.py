@@ -1,7 +1,11 @@
+import cv2
 from database.supabase import CreateConnection
 from src.service.camera import capture_images
 import src.service.Result as Result
 from src.service.tts import CreateSound
+# from src.train_models import train_model
+# from src.data_processing import dataprocessing
+from src.classify_model import classify_model
 
 db = CreateConnection()
 
@@ -9,7 +13,7 @@ db = CreateConnection()
 if __name__ == "__main__":
     print("Welcome to the AI Project CLI")
     while(True):
-        input_text = input("Start Program (camera/crud/voice/no): ")
+        input_text = input("Start Program (datacollect/crud/voice/model/no): ")
         if input_text.lower() == "no":
             break
         elif input_text.lower() == "crud":
@@ -47,7 +51,7 @@ if __name__ == "__main__":
                     break
                 else:
                     print("Invalid function")
-        elif input_text.lower() == "camera":
+        elif input_text.lower() == "datacollect":
             print("Starting camera data collection...")
             success = capture_images()
             if success:
@@ -60,5 +64,9 @@ if __name__ == "__main__":
             fileName = input("Enter File Name: ")
             response = CreateSound(id,text,fileName)
             print(response)
+        elif input_text.lower() == "model":
+            print("Starting model")
+            classify_model()
         else:
             print("Invalid input (camera/crud/no)")
+    cv2.destroyAllWindows()
