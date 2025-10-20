@@ -59,7 +59,7 @@ for dir_name in os.listdir(DATA_DIR):
 #         plt.imshow(img_rgb)  
         
 # plt.show()
-f = open('data.pickle', 'wb')
+f = open('data_75pics.pickle', 'wb')
 pickle.dump({'data': data, 'labels': labels}, f)
 f.close()
 print("Data saved to data.pickle")
