@@ -1,6 +1,5 @@
 import os
 # to save the dataset that we created from data processing
-import pickle
 
 import mediapipe as mp
 import cv2
@@ -26,7 +25,7 @@ labels = []
 
 # Process each image in the data directory
 for dir_name in os.listdir(DATA_DIR):
-    for img_path in os.listdir(os.path.join(DATA_DIR, dir_name)):
+    for img_path in os.listdir(os.path.join(DATA_DIR, dir_name))[:1]:
         data_aux = []
         img = cv2.imread(os.path.join(DATA_DIR, dir_name, img_path))
         # Convert the BGR image to RGB before processing.
@@ -35,19 +34,16 @@ for dir_name in os.listdir(DATA_DIR):
         results = hands.process(img_rgb)
         if results.multi_hand_landmarks:
             for hand_landmarks in results.multi_hand_landmarks:
-                for i in range(len(hand_landmarks.landmark)):
-                    x = hand_landmarks.landmark[i].x
-                    y = hand_landmarks.landmark[i].y
-                    data_aux.append(x)
-                    data_aux.append(y)
-                    
-            # print(data_aux)
-            data.append(data_aux)
-            labels.append(dir_name)
-
-            
-
-f = open('data_75pics.pickle', 'wb')
-pickle.dump({'data': data, 'labels': labels}, f)
-f.close()
-print("Data saved to data.pickle")
+                # Draw hand landmarks.
+                mp_drawing.draw_landmarks(
+                    img_rgb,
+                    hand_landmarks,
+                    mp_hands.HAND_CONNECTIONS,
+                    mp_drawing_styles.get_default_hand_landmarks_style(),
+                mp_drawing_styles.get_default_hand_connections_style()
+            )
+        # Show the image with the hand landmarks
+        plt.figure() 
+        plt.imshow(img_rgb)  
+        
+plt.show()
