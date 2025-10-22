@@ -5,7 +5,12 @@ import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 # Funcrion to train model
 from sklearn.model_selection import train_test_split
+
+# Function to evaluate F1 Score
 from sklearn.metrics import accuracy_score
+from sklearn.metrics import precision_score
+from sklearn.metrics import recall_score
+from sklearn.metrics import f1_score
 
 data_dict = pickle.load(open("./data_75pics.pickle", "rb"))
 
@@ -25,9 +30,44 @@ y_predicted = model.predict(x_test)
 accuracy = accuracy_score(y_predicted, y_test)
 print('Accuracy: {}%'.format(accuracy * 100))
 
+
 f = open('model.p', 'wb')
 pickle.dump({'model': model}, f)
 f.close()
 print("Model trained and saved to model.p")
 # print(data_dict.keys())
 # print(data_dict)
+
+# Accuracy Score
+# Accuracy on training data
+x_train_prediction = model.predict(x_train)
+training_data_accuracy = accuracy_score(y_train, x_train_prediction)
+print('Accuracy on Training data : ', round(training_data_accuracy*100,2),'%')
+# Accuracy on test data
+x_test_prediction = model.predict(x_test)
+test_data_accuracy = accuracy_score(y_test,x_test_prediction)
+print('Accuracy on Test data : ', round(test_data_accuracy*100,2),'%')
+
+# Precision
+# precision for training data predictions
+precision_train = precision_score(y_train, x_train_prediction, average='weighted')
+print('Training data Precision = ', precision_train)
+# precision for test data predictions
+precision_test = precision_score(y_test, x_test_prediction, average='weighted')
+print('Training data Precision = ', precision_test)
+
+# Recall
+# recall for training data predictions
+recall_train = recall_score(y_train, x_train_prediction, average='weighted')
+print('Training data Recall = ', recall_train)
+# recall for test data predictions
+recall_test = recall_score(y_test, x_test_prediction, average='weighted')
+print('Test data Recall = ', recall_test)
+
+# F1
+# f1 score for training data predictions
+f1_score_train = f1_score(y_train, x_train_prediction, average='weighted')
+print('Training data F1 Score = ', f1_score_train)
+# f1 score for test data predictions
+f1_score_test = f1_score(y_test, x_test_prediction, average='weighted')
+print('Test data F1 Score = ', f1_score_test)
