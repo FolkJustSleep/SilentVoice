@@ -38,6 +38,7 @@ print("Model trained and saved to model.p")
 # print(data_dict.keys())
 # print(data_dict)
 
+
 # Accuracy Score
 # Accuracy on training data
 x_train_prediction = model.predict(x_train)
@@ -54,7 +55,7 @@ precision_train = precision_score(y_train, x_train_prediction, average='weighted
 print('Training data Precision = ', precision_train)
 # precision for test data predictions
 precision_test = precision_score(y_test, x_test_prediction, average='weighted')
-print('Training data Precision = ', precision_test)
+print('Test data Precision = ', precision_test)
 
 # Recall
 # recall for training data predictions
@@ -71,3 +72,20 @@ print('Training data F1 Score = ', f1_score_train)
 # f1 score for test data predictions
 f1_score_test = f1_score(y_test, x_test_prediction, average='weighted')
 print('Test data F1 Score = ', f1_score_test)
+
+
+# Precision Recall and F1 function
+def precision_recall_f1_score(true_labels, pred_labels):
+    precision_value = precision_score(true_labels, pred_labels, average='weighted')
+    recall_value = recall_score(true_labels, pred_labels, average='weighted')
+    f1_score_value = f1_score(true_labels, pred_labels, average='weighted')
+
+    print('Precision =', precision_value)
+    print('Recall =', recall_value)
+    print('F1 Score =', f1_score_value)
+
+print('---------- Classification metrics for training data ------------')
+precision_recall_f1_score(y_train, x_train_prediction)
+
+print('---------- Classification metrics for test data ----------------')
+precision_recall_f1_score(y_test, x_test_prediction)
