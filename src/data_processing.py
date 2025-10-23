@@ -23,7 +23,7 @@ data = []
 # category for each image
 labels = []
 
-
+print("Processing images from:", DATA_DIR)
 # Process each image in the data directory
 for dir_name in os.listdir(DATA_DIR):
     for img_path in os.listdir(os.path.join(DATA_DIR, dir_name)):
@@ -47,7 +47,7 @@ for dir_name in os.listdir(DATA_DIR):
 
             
 
-f = open('data_75pics.pickle', 'wb')
+f = open('data_100pics.pickle', 'wb')
 pickle.dump({'data': data, 'labels': labels}, f)
 f.close()
 print("Data saved to data.pickle")
