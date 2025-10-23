@@ -1,6 +1,8 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
+# this version available to use with full screen layout only
+
 st.set_page_config(
     page_title="ML Project",
     page_icon="🤞🏿",
