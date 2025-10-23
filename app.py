@@ -13,24 +13,30 @@ st.set_page_config(
 st.markdown("""
 <style>
     /* Hide all Streamlit UI */
-    #MainMenu, footer, header, .stDeployButton {
+    #MainMenu, header, .stDeployButton {
         visibility: hidden !important;
         display: none !important;
     }
     
-    /* Remove Scrollbar */
+    /* Custom Scrollbar (smaller but still visible) */
     ::-webkit-scrollbar {
-        width: 0px !important;
-        background: transparent !important;
+        width: 6px !important;
+        background: rgba(0, 0, 0, 0.05) !important;
     }
     
-    /* Force Full Viewport */
+    ::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.2) !important;
+        border-radius: 3px !important;
+    }
+    
+    /* Enable Scrolling */
     html, body, #root, .stApp {
         width: 100vw !important;
-        height: 100vh !important;
+        min-height: 100vh !important;
         margin: 0 !important;
         padding: 0 !important;
-        overflow: hidden !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
     }
     
     /* Override ALL Containers */
@@ -56,20 +62,16 @@ st.markdown("""
         max-width: none !important;
     }
     
-    /* iframe Full Screen */
+    /* iframe Responsive (ไม่ fixed) */
     iframe {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
         width: 100vw !important;
-        height: 100vh !important;
         border: none !important;
         margin: 0 !important;
         padding: 0 !important;
-        z-index: 999999 !important;
+        display: block !important;
     }
     
-    /* Disable Responsive */
+    /* Disable Responsive Behavior */
     @media (max-width: 1200px) {
         .stApp {
             width: 100vw !important;
@@ -107,13 +109,68 @@ camera_html = """
                 radial-gradient(ellipse 550px 450px at 10% 75%, rgba(26, 182, 223, 0.28) 0%, transparent 50%),
                 radial-gradient(ellipse 480px 380px at 90% 80%, rgba(26, 182, 223, 0.25) 0%, transparent 48%),
                 #F1F1F1;
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
+            width: 100%;
+            min-height: 100%;
+            overflow: visible;
+            display: flex;
+            flex-direction: column;
+            padding-top: 80px;
+            margin: 0;
+        }
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            z-index: 1000;
+            padding: 20px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .navbar-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1AB6DF;
+            margin: 0;
+        }
+        
+        .navbar-menu {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: #2D2D2D;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .nav-link:hover {
+            color: #1AB6DF;
+        }
+        
+        .content-wrapper {
+            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            padding: 40px 0;
         }
         
         .header-section {
@@ -426,6 +483,27 @@ camera_html = """
             box-shadow: 0 4px 12px rgba(26, 182, 223, 0.3);
         }
         
+        .footer {
+            background: #0B547F;
+            color: white;
+            text-align: center;
+            padding: 50px 5%;
+            border-radius: 30px 30px 0px 0px;
+            margin-top: 60px;
+            width: 100%;
+        }
+        
+        .footer-content {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        .footer-text {
+            font-size: 14px;
+            font-weight: 400;
+            margin: 0;
+        }
+        
         /* Responsive Design for Mobile */
         @media (max-width: 1024px) {
             body {
@@ -675,6 +753,14 @@ camera_html = """
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <h1 class="navbar-title">ML Project</h1>
+        </div>
+        <!-- <div class="navbar-menu"> <a class="nav-link">more</a> </div> -->
+    </nav>
+    
+    <div class="content-wrapper">
     <div class="header-section">
         <h1 class="main-title">ASL Alphabet Detection</h1>
         <p class="subtitle">Real-time American Sign Language Recognition with Voice Output</p>
@@ -747,6 +833,13 @@ camera_html = """
             </button>
         </div>
     </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">© 2025 ML Project. All rights reserved.</p>
+        </div>
+    </footer>
     
     <script>
         const video = document.getElementById('videoElement');
@@ -860,7 +953,7 @@ camera_html = """
         speakBtn.addEventListener('click', () => {
             if (detectedText) {
                 const utterance = new SpeechSynthesisUtterance(detectedText);
-                utterance.lang = 'en-US';
+                utterance.lang = 'en-US';  
                 utterance.rate = 0.9;
                 window.speechSynthesis.speak(utterance);
             } else {
@@ -893,4 +986,4 @@ camera_html = """
 </html>
 """
 
-components.html(camera_html, height=None, scrolling=False)
+components.html(camera_html, height=1040, scrolling=False)
