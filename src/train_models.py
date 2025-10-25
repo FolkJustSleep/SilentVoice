@@ -7,6 +7,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
+
 data_dict = pickle.load(open("./data_75pics.pickle", "rb"))
 
 data = np.asarray(data_dict['data'])
@@ -24,6 +25,7 @@ y_predicted = model.predict(x_test)
 # calculate the accuracy
 accuracy = accuracy_score(y_predicted, y_test)
 print('Accuracy: {}%'.format(accuracy * 100))
+
 
 f = open('model.p', 'wb')
 pickle.dump({'model': model}, f)

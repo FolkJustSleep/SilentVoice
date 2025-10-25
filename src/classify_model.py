@@ -16,7 +16,7 @@ def classify_model():
     hands = mp_hands.Hands(
         static_image_mode=True,
         min_detection_confidence=0.5)
-    model_dict = pickle.load(open("./model_75pic.p", "rb"))
+    model_dict = pickle.load(open("./model_100pic.p", "rb"))
     model = model_dict['model']
 
     available_cameras = find_available_cameras()
