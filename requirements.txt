@@ -70,11 +70,7 @@ smmap==5.0.2
 sniffio==1.3.1
 sounddevice==0.5.2
 storage3==0.12.1
-<<<<<<< requirements.txt
-streamlit==1.50.0
-=======
-streamlit>=1.28.0
->>>>>>> requirements.txt
+streamlit>=1.50.0
 StrEnum==0.4.15
 supabase==2.18.1
 supabase_auth==2.12.3
