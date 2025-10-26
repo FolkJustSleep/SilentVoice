@@ -47,7 +47,7 @@ for dir_name in os.listdir(DATA_DIR):
 
             
 
-f = open('data_100pics.pickle', 'wb')
+f = open('data.pickle', 'wb')
 pickle.dump({'data': data, 'labels': labels}, f)
 f.close()
 print("Data saved to data.pickle")
