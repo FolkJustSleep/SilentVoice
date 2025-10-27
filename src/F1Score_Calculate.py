@@ -14,10 +14,10 @@ from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
 from sklearn.metrics import f1_score
 
-pickle_in = open('model_new.p', 'rb')
+pickle_in = open('model.p', 'rb')
 model_dict = pickle.load(pickle_in)
 model = model_dict['model']
-data_dict = pickle.load(open("./data_100pics.pickle", "rb"))
+data_dict = pickle.load(open("./data.pickle", "rb"))
 test_dict = pickle.load(open("./data_testset.pickle", "rb"))
 test_data = np.asarray(test_dict['data'])
 test_labels = np.asarray(test_dict['labels'])
@@ -32,7 +32,7 @@ print('Accuracy from prediction with test dataset: {}%'.format(Accuracy * 100))
 
 display_labels = np.unique(labels)
 # print("Labels:", display_labels)
-
+# print(model.best_params_)
 # Confusion Matrix
 cf_matrix = confusion_matrix(y_true=test_labels, y_pred=y_predicted,labels=display_labels)
 cf_matrix_display = ConfusionMatrixDisplay(confusion_matrix=cf_matrix, display_labels=display_labels)

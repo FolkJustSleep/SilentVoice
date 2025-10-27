@@ -5,13 +5,13 @@ from sklearn.model_selection import LearningCurveDisplay, ShuffleSplit
 import pickle
 
 
-data_dict = pickle.load(open("./data_new.pickle", "rb"))
+data_dict = pickle.load(open("./data.pickle", "rb"))
 
 data = np.asarray(data_dict['data'])
 labels = np.asarray(data_dict['labels'])
 
 
-pickle_in = open('model_100pic.p', 'rb')
+pickle_in = open('model_new.p', 'rb')
 model_dict = pickle.load(pickle_in)
 model = model_dict['model']
 print("Total samples:", len(labels))
@@ -23,7 +23,7 @@ common_params = {
     "X": data,
     "y": labels,
     "train_sizes": np.linspace(0.1, 1.0, 5),
-    "cv": ShuffleSplit(n_splits=50, test_size=0.2, random_state=0),
+    "cv": ShuffleSplit(n_splits=5, test_size=0.2, random_state=0),
     "score_type": "both",
     "n_jobs": 4,
     "line_kw": {"marker": "o"},
