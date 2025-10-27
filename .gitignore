@@ -13,3 +13,5 @@ voice/*
 /Dataset
 /Testset
 .DS_Store
+data_kao
+data_Earnjung
