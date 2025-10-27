@@ -962,25 +962,50 @@ camera_html = """
         });
         
         // Replace this simulation with actual ML model detection
-        function startDetection() {
-            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            const detectionInterval = setInterval(() => {
-                if (!isPlaying || isPaused) {
-                    clearInterval(detectionInterval);
-                    return;
-                }
-                
-                const randomLetter = letters[Math.floor(Math.random() * letters.length)];
-                detectedText += randomLetter;
-                
+        async function startDetection() {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+
+        const detectionInterval = setInterval(async () => {
+            if (!isPlaying || isPaused) {
+            clearInterval(detectionInterval);
+            return;
+            }
+
+            // วาด frame จาก video
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // แปลงภาพเป็น base64
+            const dataUrl = canvas.toDataURL('image/jpeg');
+            const base64Data = dataUrl.split(',')[1];
+
+            // ส่งไป Flask API
+            try {
+            const response = await fetch('http://127.0.0.1:8000/predict', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ image: base64Data })
+            });
+            const result = await response.json();
+
+            if (result.result && result.result !== "None") {
+                detectedText += result.result;
                 resultText.textContent = detectedText;
                 resultText.style.display = 'block';
                 resultPlaceholder.style.display = 'none';
-                
+
                 const resultBox = document.querySelector('.result-box');
                 resultBox.scrollTop = resultBox.scrollHeight;
-            }, 2000);
+            }
+            } catch (err) {
+            console.error('API Error:', err);
+            }
+
+        }, 1500);
         }
+
     </script>
 </body>
 </html>
