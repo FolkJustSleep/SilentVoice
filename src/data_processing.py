@@ -34,12 +34,12 @@ for dir_name in os.listdir(DATA_DIR):
         
         results = hands.process(img_rgb)
         if results.multi_hand_landmarks:
-            for hand_landmarks in results.multi_hand_landmarks:
-                for i in range(len(hand_landmarks.landmark)):
-                    x = hand_landmarks.landmark[i].x
-                    y = hand_landmarks.landmark[i].y
-                    data_aux.append(x)
-                    data_aux.append(y)
+            hand_landmarks = results.multi_hand_landmarks[0]
+            for i in range(len(hand_landmarks.landmark)):
+                x = hand_landmarks.landmark[i].x
+                y = hand_landmarks.landmark[i].y
+                data_aux.append(x)
+                data_aux.append(y)
                     
             # print(data_aux)
             data.append(data_aux)

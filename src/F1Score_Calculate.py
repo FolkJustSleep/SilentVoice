@@ -24,7 +24,7 @@ test_labels = np.asarray(test_dict['labels'])
 data = np.asarray(data_dict['data'])
 labels = np.asarray(data_dict['labels'])
 #split the data into training and testing sets
-x_train , x_test, y_train, y_test = train_test_split(data, labels, test_size=0.2, shuffle=True, stratify=labels)
+# x_train , x_test, y_train, y_test = train_test_split(data, labels, test_size=0.2, shuffle=True, stratify=labels)
 
 y_predicted = model.predict(test_data)
 Accuracy = accuracy_score(y_predicted, test_labels)
@@ -32,7 +32,7 @@ print('Accuracy from prediction with test dataset: {}%'.format(Accuracy * 100))
 
 display_labels = np.unique(labels)
 # print("Labels:", display_labels)
-# print(model.best_params_)
+print(model.best_params_)
 # Confusion Matrix
 cf_matrix = confusion_matrix(y_true=test_labels, y_pred=y_predicted,labels=display_labels)
 cf_matrix_display = ConfusionMatrixDisplay(confusion_matrix=cf_matrix, display_labels=display_labels)
@@ -47,8 +47,12 @@ print('Precision of model: ', precision)
 recall = recall_score(y_true=test_labels, y_pred=y_predicted,labels=display_labels, average='weighted')
 print('Recall of model: ', recall)
 
+# True Negative Rate
+TNR = cf_matrix.diagonal() / cf_matrix.sum(axis=1)
+print('True Negative Rate of model: ', TNR)
+
 # # F1
-f1_score = f1_score(y_true=test_labels, y_pred=y_predicted,labels=display_labels, average='weighted')
-print('F1 Score of model: ', f1_score)
+f1 = f1_score(y_true=test_labels, y_pred=y_predicted,labels=display_labels, average='weighted')
+print('F1 Score of model: ', f1)
 
 plt.show()

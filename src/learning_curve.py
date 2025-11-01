@@ -11,7 +11,7 @@ data = np.asarray(data_dict['data'])
 labels = np.asarray(data_dict['labels'])
 
 
-pickle_in = open('model_new.p', 'rb')
+pickle_in = open('model.p', 'rb')
 model_dict = pickle.load(pickle_in)
 model = model_dict['model']
 print("Total samples:", len(labels))

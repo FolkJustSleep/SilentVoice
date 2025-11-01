@@ -16,3 +16,5 @@ voice/*
 data_kao
 data_Earnjung
 model225pic.p
+data.pickle
+model300pic.p
