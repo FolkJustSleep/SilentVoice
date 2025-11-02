@@ -6,7 +6,7 @@ app = Flask(__name__)
 CORS(app)  # ✅ อนุญาตให้ frontend (Streamlit/HTML) เรียก API ได้
 
 # โหลดโมเดล
-model_dict = pickle.load(open("./model_100pic.p", "rb"))
+model_dict = pickle.load(open("./model.p", "rb"))
 model = model_dict["model"]
 labels = {i: chr(65 + i) for i in range(26)}  # A–Z
 

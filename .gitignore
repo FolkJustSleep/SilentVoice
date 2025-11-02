@@ -11,3 +11,11 @@ voice
 voice/*
 /data
 /Dataset
+/Testset
+.DS_Store
+data_kao
+data_Earnjung
+model225pic.p
+data.pickle
+model300pic.p
+model.p
