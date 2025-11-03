@@ -2,7 +2,7 @@ import pickle
 import cv2, base64, numpy as np, pickle, mediapipe as mp
 
 def load_model():
-    model_dict = pickle.load(open("./model300pic.p", "rb"))
+    model_dict = pickle.load(open("./model.p", "rb"))
     model = model_dict["model"]
     return model
 
