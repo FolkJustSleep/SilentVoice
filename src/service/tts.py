@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 from elevenlabs.client import ElevenLabs
 from src.service.voice_upload import UploadVoice
 
-from database import crud, supabase
 
 load_dotenv()
 client = ElevenLabs(api_key=os.getenv("ELEVENLABS_API_KEY"))

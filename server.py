@@ -11,10 +11,10 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Allows all origins
+    allow_origins=["http://localhost:3000"],
     allow_credentials=True,
-    allow_methods=["POST"],  # Allows all methods
-    allow_headers=["content-type: application/json"],  # Allows all headers
+    allow_methods=["POST"],
+    allow_headers=["content-type: application/json"], 
 )
 
 @app.get("/")
