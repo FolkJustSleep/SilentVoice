@@ -4,3 +4,8 @@ class Voice(BaseModel):
     id: str
     name: str
     preview_url: str
+    
+class InputVoice(BaseModel):
+    text: str
+    voiceid: str
+    filename: str
