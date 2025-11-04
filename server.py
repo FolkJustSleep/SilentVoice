@@ -14,7 +14,7 @@ app.add_middleware(
     allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["POST"],
-    allow_headers=["Content-Type: application/json"],
+    allow_headers=["*"],
 )
 
 @app.get("/")
