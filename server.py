@@ -23,7 +23,7 @@ async def read_root():
 
 @app.post("/tts")
 async def read_tts(input_voice: InputVoice):
-    result = await CreateSound(input_voice.voiceid, input_voice.text, input_voice.filename)
+    result = CreateSound(input_voice.text)
     if result["error"]:
         return ResponseModel(status="400", message="Error creating TTS", data=result["error"])
     return ResponseModel(status="200", message="TTS created successfully", data=result)

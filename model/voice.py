@@ -7,5 +7,3 @@ class Voice(BaseModel):
     
 class InputVoice(BaseModel):
     text: str
-    voiceid: str
-    filename: str

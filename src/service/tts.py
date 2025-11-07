@@ -6,12 +6,13 @@ from src.service.voice_upload import UploadVoice
 
 load_dotenv()
 client = ElevenLabs(api_key=os.getenv("ELEVENLABS_API_KEY"))
-def CreateSound(voiceid, text, filename): 
-    if not voiceid:
-        return {"audiofile": None, "error": "No voice ID provided"}
-    if not text:
-        return {"audiofile": None, "error": "No text provided"}
-    fileName = filename+".mp3"
+def CreateSound(text): 
+    # if not voiceid:
+    #     return {"audiofile": None, "error": "No voice ID provided"}
+    # if not text:
+    #     return {"audiofile": None, "error": "No text provided"}
+    voiceid = "21m00Tcm4TlvDq8ikWAM"
+    # fileName = text+".mp3"
     try: 
         if text == 'a' or text == 'A':
             text = "Ae"
@@ -22,8 +23,8 @@ def CreateSound(voiceid, text, filename):
             language_code="en",
             model_id="eleven_multilingual_v2",
         )
-        response = UploadVoice(audiofile, fileName)
-        print("Upload response:", response)
+        # response = UploadVoice(audiofile, fileName)
+        # print("Upload response:", response)
         return {"audiofile": audiofile, "error": None}
     except Exception as e:
         return {"audiofile": None, "error": str(e)}
