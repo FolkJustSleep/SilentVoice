@@ -32,8 +32,16 @@ If you add more dependencies to the project use this command to update requireme
 pip freeze > requirements.txt
 ```
 
-Run
+Run to test 
 
 ```
 python main.py
+```
+type model and the classifer will start
+
+
+# Run as a service
+
+```
+fastapi dev server.py
 ```

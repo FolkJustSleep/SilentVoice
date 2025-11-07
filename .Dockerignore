@@ -1,0 +1,14 @@
+.venv
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+Testset
+data
+.git
+.gitignore
+Dockerfile
+README.md
+model255pic.p
+requirements.txt
